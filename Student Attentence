@@ -1,0 +1,22 @@
+import pandas as pd
+#importing Pandas for procesing csv or xlsx files etc
+
+# Data Frame
+df = pd.read_excel('StdntData.xlsx')
+
+#creating new column in dataframe
+df['10-04-20']=''
+
+for i,row in df.iterrows():
+    print(row['Name'],' is present?')
+    attentence =input()
+    if i in attentence:
+        df['10-04-20']='Present'
+    else:
+        df['10-04-20']= 'Absent'
+
+# To write the data frame to excel and save to excel
+from pandas import ExcelWriter
+writer = ExcelWriter('StdntData.xlsx')
+df.to_excel(writer)
+writer.save()
